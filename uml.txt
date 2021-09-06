@@ -1,11 +1,57 @@
 @startuml
-Shape <|-- Circle
+package "shapes" {
+    Shape <|-- Circle
+    Shape <|-- Rectangle
+    Shape <|-- RegularPentagon
+    Shape <|-- Triangle
+    Rectangle <|-- Square
+    Triangle <|-- EquilateralTriangle
+}
+
+package "containers" {
+    class ShapeCollection
+}
+
+package "utilities" {
+    class FormulaProvider {
+        {static} String getAreaForShape(String shape)
+        {static} String getPerimeterForShape(String shape)
+    }
+
+    class Main
+}
 
 abstract class Shape {
   {abstract} double calculateArea()
+  {abstract} double calculatePerimeter()
+  {static} boolean checkIfArgsGreaterThanZero(float... args)
 }
 
 class Circle {
-  double calculateArea()
+  + double calculateArea()
+  + double calculatePerimeter()
+}
+
+class Rectangle {
+    + double calculateArea()
+    + double calculatePerimeter()
+}
+
+class RegularPentagon {
+    + double calculateArea()
+    + double calculatePerimeter()
+}
+
+class Triangle {
+    + double calculateArea()
+    + double calculatePerimeter()
+}
+
+class EquilateralTriangle {
+
+}
+
+class Square {
+
 }
 @enduml
