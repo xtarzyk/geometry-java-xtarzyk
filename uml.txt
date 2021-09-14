@@ -1,4 +1,8 @@
 @startuml
+package "geometry" {
+    class Main
+
+
 package "shapes" {
     Shape <|-- Circle
     Shape <|-- Rectangle
@@ -9,7 +13,11 @@ package "shapes" {
 }
 
 package "containers" {
-    class ShapeCollection
+    class ShapeCollection {
+        ~ List<Shape> shapesCollection
+        + void addShape(Shape shape)
+        + void getShapesTable()
+    }
 }
 
 package "utilities" {
@@ -17,8 +25,6 @@ package "utilities" {
         {static} String getAreaForShape(String shape)
         {static} String getPerimeterForShape(String shape)
     }
-
-    class Main
 }
 
 abstract class Shape {
@@ -28,30 +34,51 @@ abstract class Shape {
 }
 
 class Circle {
+  - private final double r
+  + Circle(double r)
   + double calculateArea()
   + double calculatePerimeter()
+  + String toString()
+  + {static} String getFormulaArea()
+  + {static} String getFormulaPerimeter()
 }
 
 class Rectangle {
+    - final double a
+    - final double b
+    + Rectangle(double a, double b)
+    + double getA()
     + double calculateArea()
     + double calculatePerimeter()
+    + String toString()
 }
 
 class RegularPentagon {
+    - final double a
+    + RegularPentagon(double a)
     + double calculateArea()
     + double calculatePerimeter()
+    + String toString()
 }
 
 class Triangle {
+    - final double a
+    - final double b
+    - final double c
+    + Triangle(double a, double b, double c)
+    + getA()
     + double calculateArea()
     + double calculatePerimeter()
+    + String toString()
 }
 
 class EquilateralTriangle {
-
+    + String toString()
 }
 
 class Square {
-
+    + Square(double a)
+    + String toString()
+}
 }
 @enduml

@@ -1,5 +1,7 @@
 package com.codecool.geometry.utilities;
 
+import com.codecool.geometry.shapes.Circle;
+
 public class FormulaProvider {
 
     /**
@@ -9,6 +11,10 @@ public class FormulaProvider {
      * @return area formula
      */
     public static String getAreaForShape(String shape) {
+        switch (shape) {
+            case "Circle":
+                return Circle.getFormulaArea();
+        }
         return "";
     }
 
