@@ -23,11 +23,11 @@ public class Circle extends Shape {
         return "Circle, r = " + r;
     }
 
-    public static String getFormulaArea() {
-        return "";
+    public static String getFormulaPerimeter() {
+        return "2×π×r";
     }
 
-    public static String getFormulaPerimeter() {
-        return "";
+    public static String getFormulaArea() {
+        return "π×r×r";
     }
 }

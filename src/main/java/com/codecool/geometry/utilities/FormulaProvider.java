@@ -1,6 +1,6 @@
 package com.codecool.geometry.utilities;
 
-import com.codecool.geometry.shapes.Circle;
+import com.codecool.geometry.shapes.*;
 
 public class FormulaProvider {
 
@@ -14,6 +14,16 @@ public class FormulaProvider {
         switch (shape) {
             case "Circle":
                 return Circle.getFormulaArea();
+            case "Rectangle":
+                return Rectangle.getFormulaArea();
+            case "Triangle":
+                return Triangle.getFormulaArea();
+            case "Square":
+                return Square.getFormulaArea();
+            case "EquilateralTriangle":
+                return EquilateralTriangle.getFormulaArea();
+            case "RegularPentagon":
+                return RegularPentagon.getFormulaArea();
         }
         return "";
     }
@@ -25,6 +35,20 @@ public class FormulaProvider {
      * @return perimeter formula
      */
     public static String getPerimeterForShape(String shape) {
+        switch (shape) {
+            case "Circle":
+                return Circle.getFormulaPerimeter();
+            case "Rectangle":
+                return Rectangle.getFormulaPerimeter();
+            case "Triangle":
+                return Triangle.getFormulaPerimeter();
+            case "Square":
+                return Square.getFormulaPerimeter();
+            case "EquilateralTriangle":
+                return EquilateralTriangle.getFormulaPerimeter();
+            case "RegularPentagon":
+                return RegularPentagon.getFormulaPerimeter();
+        }
         return "";
     }
 }

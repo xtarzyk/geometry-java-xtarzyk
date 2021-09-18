@@ -29,5 +29,12 @@ public class Rectangle extends Shape {
         return "Rectangle, a = " + a + ", b = " + b;
     }
 
+    public static String getFormulaPerimeter() {
+        return "2×a+2×b";
+    }
+
+    public static String getFormulaArea() {
+        return "a×b";
+    }
 
 }

@@ -10,4 +10,12 @@ public class Square extends Rectangle {
     public String toString() {
         return "Square, a = " + getA();
     }
+
+    public static String getFormulaPerimeter() {
+        return "4×a";
+    }
+
+    public static String getFormulaArea() {
+        return "a×a";
+    }
 }

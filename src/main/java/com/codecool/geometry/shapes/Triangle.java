@@ -33,4 +33,13 @@ public class Triangle extends Shape {
     public String toString() {
         return "Triangle, a = " + a + ", b = " + b + ", c = " + c;
     }
+
+    public static String getFormulaPerimeter() {
+        return "a+b+c";
+    }
+
+    public static String getFormulaArea() {
+        return "sqrt(s×(s-a)×(s-b)×(s-c))";
+    }
+
 }

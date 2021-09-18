@@ -10,4 +10,12 @@ public class EquilateralTriangle extends Triangle {
     public String toString() {
         return "Equilateral Triangle, a = " + getA();
     }
+
+    public static String getFormulaPerimeter() {
+        return "2×π×r";
+    }
+
+    public static String getFormulaArea() {
+        return "π×r×r";
+    }
 }

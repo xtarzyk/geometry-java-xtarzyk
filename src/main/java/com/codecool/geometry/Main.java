@@ -1,124 +1,160 @@
 package com.codecool.geometry;
 
 import com.codecool.geometry.containers.ShapeCollection;
-import com.codecool.geometry.shapes.Circle;
-import com.codecool.geometry.shapes.EquilateralTriangle;
-import com.codecool.geometry.shapes.Rectangle;
-import com.codecool.geometry.shapes.RegularPentagon;
-import com.codecool.geometry.shapes.Square;
-import com.codecool.geometry.shapes.Triangle;
+import com.codecool.geometry.shapes.*;
+import com.codecool.geometry.utilities.*;
 
 import java.util.Scanner;
 
 public class Main {
+    static ShapeCollection shapeCollection = new ShapeCollection();
+
 
     public static void main(String[] args) {
 
         boolean isRunning = true;
-        Scanner scanner = new Scanner(System.in);
-
+        Scanner option = new Scanner(System.in);
 
         while (isRunning) {
-	        int option = scanner.nextInt();  // TODO read the keyboard here
+            Display.printMenuOptions();
+	        int shapeSelected = option.nextInt();
+//
+//            shapeCollection.addShape(new Square(12));
+//            shapeCollection.addShape(new Circle(18));
+//            shapeCollection.addShape(new Triangle(5, 5, 4));
+//            shapeCollection.addShape(new Rectangle(2, 3));
 
-            switch (option) {
+            switch (shapeSelected) {
                 case 1:
-                    // TODO Add new shape
-                    printAvailableShapes();
+                    Display.printAvailableShapes();
                     shapeMaker();
                     break;
                 case 2:
-                    // TODO Show all shapes
+                    shapeCollection.getShapesTable();
                     break;
                 case 3:
-                    // TODO Show shape with the largest perimeter
+                    shapeCollection.getLargestShapeByPerimeter();
                     break;
                 case 4:
-                    // TODO Show shape with the largest area
+                    shapeCollection.getLargestShapeByArea();
                     break;
                 case 5:
-                    // TODO Show formulas
+                    Display.printAvailableShapes();
+                    shapeFormulas();
                     break;
                 case 0:
-                    // TODO Exit
                     isRunning = false;
                     break;
             }
         }
-
-//        Square square = new Square(35.5);
-//        Rectangle rectangle = new Rectangle(10.2, 4.7);
-//        Triangle triangle = new Triangle(13.2, 12.0, 10.6);
-//        //Circle circle = new Circle(5);
-//        RegularPentagon regularPentagon = new RegularPentagon(7.7);
-//        EquilateralTriangle equilateralTriangle = new EquilateralTriangle(4.1);
-//        System.out.println(equilateralTriangle);
-
-
-//        shapeCollection.addShape(circle);
-//        shapeCollection.addShape(square);
-//        shapeCollection.addShape(rectangle);
-//        shapeCollection.addShape(regularPentagon);
-//        shapeCollection.addShape(triangle);
-//        shapeCollection.getShapesTable();
-
-
     }
 
-    private static void printAvailableShapes(){
-        System.out.println(
-                "Select shape: \n" +
-                        "1. Circle\n" +
-                        "2. Rectangle\n" +
-                        "3. Square\n" +
-                        "4. Regular Pentagon\n" +
-                        "5. Triangle\n" +
-                        "6. Equilateral Triangle");
-    }
 
-    private static void shapeMaker() {
+
+    public static void shapeMaker() {
 
         Scanner option = new Scanner(System.in);
         Scanner param = new Scanner(System.in);
-        ShapeCollection shapeCollection = new ShapeCollection();
         int shapeSelected = option.nextInt();
 
 
         switch(shapeSelected) {
             case 1:
                 System.out.println("Enter value: ");
-                double value = param.nextDouble();
-                Circle circle = new Circle(value);
+                double r = param.nextDouble();
+                Circle circle = new Circle(r);
                 shapeCollection.addShape(circle);
                 break;
             case 2:
                 System.out.println("Enter value for a: ");
-                double valueA = param.nextDouble();
+                double a = param.nextDouble();
                 System.out.println("Enter value for b: ");
-                double valueB = param.nextDouble();
-                Rectangle rectangle = new Rectangle(valueA, valueB);
+                double b = param.nextDouble();
+                Rectangle rectangle = new Rectangle(a, b);
                 shapeCollection.addShape(rectangle);
                 break;
             case 3:
                 System.out.println("Enter value: ");
-                double aDouble = param.nextDouble();
-                Square square = new Square(aDouble);
+                double squareA = param.nextDouble();
+                Square square = new Square(squareA);
                 shapeCollection.addShape(square);
                 break;
-//            case 4:
-//                System.out.println("Enter value: ");
-//                double value = param.nextDouble();
-//                RegularPentagon regularPentagon = new RegularPentagon(value);
-//                shapeCollection.addShape(regularPentagon);
-//                break;
-//            case 5:
-//                Triangle triangle = new Triangle(value, value, value);
-//                shapeCollection.addShape(triangle);
-//                break;
-//            case 6:
-//                EquilateralTriangle equilateralTriangle = new EquilateralTriangle(value);
-//                shapeCollection.addShape(equilateralTriangle);
-//                break;
+            case 4:
+                System.out.println("Enter value: ");
+                double aRP = param.nextDouble();
+                RegularPentagon regularPentagon = new RegularPentagon(aRP);
+                shapeCollection.addShape(regularPentagon);
+                break;
+            case 5:
+                System.out.println("Enter value for a: ");
+                double aTriangle = param.nextDouble();
+                System.out.println("Enter value for b: ");
+                double bTriangle = param.nextDouble();
+                System.out.println("Enter value for c: ");
+                double cTriangle = param.nextDouble();
+                Triangle triangle = new Triangle(aTriangle, bTriangle, cTriangle);
+                shapeCollection.addShape(triangle);
+                break;
+            case 6:
+                System.out.println("Enter value: ");
+                double aEquilateralTriangle = param.nextDouble();
+                EquilateralTriangle equilateralTriangle = new EquilateralTriangle(aEquilateralTriangle);
+                shapeCollection.addShape(equilateralTriangle);
+                break;
+        }
+    }
+
+    public static void shapeFormulas() {
+        Scanner option = new Scanner(System.in);
+        int shapeSelected = option.nextInt();
+        switch (shapeSelected) {
+            case 1:
+                System.out.println(
+                        "Circle area formula: " +
+                                FormulaProvider.getAreaForShape("Circle") +
+                                ", Circle perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("Circle")
+                );
+                break;
+            case 2:
+                System.out.println(
+                        "Rectangle area formula: " +
+                                FormulaProvider.getAreaForShape("Rectangle") +
+                                ", Rectangle perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("Rectangle")
+                );
+                break;
+            case 3:
+                System.out.println(
+                        "Square area formula: " +
+                                FormulaProvider.getAreaForShape("Square") +
+                                ", Square perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("Square")
+                );
+            case 4:
+                System.out.println(
+                        "Regular Pentagon area formula: " +
+                                FormulaProvider.getAreaForShape("RegularPentagon") +
+                                ", Regular Pentagon perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("RegularPentagon")
+                );
+                break;
+            case 5:
+                System.out.println(
+                        "Triangle area formula: " +
+                                FormulaProvider.getAreaForShape("Triangle") +
+                                ", Triangle perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("Triangle")
+                );
+                break;
+            case 6:
+                System.out.println(
+                        "Equilateral Triangle area formula: " +
+                                FormulaProvider.getAreaForShape("EquilateralTriangle") +
+                                ", Equilateral Triangle perimeter formula: " +
+                                FormulaProvider.getPerimeterForShape("EquilateralTriangle")
+                );
+                break;
         }
     }
 
